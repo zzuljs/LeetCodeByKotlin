@@ -138,7 +138,7 @@ fun main(){
 //    println(Solution().findMinArrowShots(points))
 
 //    println(Solution().trailingZeroes(8425))
-    val list = Solution().createLinkedList(arrayListOf(1,2,3,3,4,4,5))
-    Solution().deleteDuplicates(list)
+    val list = Solution().createLinkedList(arrayListOf(1,2,3,4,5))
+    Solution().rotateRight(list,2)
 
 }

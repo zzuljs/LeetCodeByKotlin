@@ -882,7 +882,7 @@ class Solution {
             return@removeAll value > 1
         }
 
-        for (node in list){
+        for (node in list) {
             println("val = ${node!!.`val`}")
         }
 
@@ -906,9 +906,82 @@ class Solution {
     private fun printListNode(head: ListNode?) {
         var current = head
         while (current != null) {
-            println("valllll = ${current.`val`}")
+            println("printListNode,value = ${current.`val`}")
             current = current.next
         }
+    }
+
+
+    /**
+     * - [LeetCode第61题](https://leetcode.cn/problems/rotate-list/)
+     * - 解题思路：对k取膜length得到r，先反转[0,r)，再反转(r+1,length),最后反转[0,length)
+     * @since 2025-2-12 21:25:50
+     * */
+    fun rotateRight(head: ListNode?, k: Int): ListNode? {
+        var length = 0
+        var current = head
+
+        while (current != null) {
+            length++
+            current = current.next
+        }
+
+        // 特判，以下情况不需要旋转
+        if (length == 0||k==0||length==1||k%length == 0) return head
+
+        val rotate = length - k % length
+        var rotateHead = reverseListNode(head, 0, rotate)
+        rotateHead = reverseListNode(rotateHead, rotate, length)
+        rotateHead = reverseListNode(rotateHead, 0, length)
+
+        return rotateHead
+    }
+
+
+    /**
+     * @return 返回旋转后的头结点
+     * */
+    private fun reverseListNode(head: ListNode?, start: Int, end: Int): ListNode? {
+
+        var index = 0
+        var currentNode: ListNode? = head
+        var preStartNode: ListNode? = null
+        var finalHead: ListNode? = null
+
+        // 先找到start位置以及前一个节点
+        while (index < start) {
+//            println("currentNode = ${currentNode?.`val`}")
+            preStartNode = currentNode
+            currentNode = currentNode?.next
+            index++
+        }
+
+        // 开始旋转 start到end之间的节点
+        val rotateHead = currentNode
+        var nextNode: ListNode? = null
+        var preNode = preStartNode
+        index = 0
+        while (index < end - start) {
+            //println("index = $index,current = ${currentNode?.`val`},next = ${currentNode?.next?.`val`},preNode = ${preNode?.`val`}")
+            nextNode = currentNode?.next
+            currentNode?.next = preNode
+            preNode = currentNode
+            currentNode = nextNode
+            index++
+        }
+
+        // 特判：如果是从头开始反转
+        finalHead = if (preStartNode == null) {
+            preNode
+        } else {
+            head
+        }
+        preStartNode?.next = preNode
+        rotateHead?.next = currentNode
+
+//        println("start = $start,end = $end")
+//        printListNode(finalHead)
+        return finalHead
     }
 }
 
