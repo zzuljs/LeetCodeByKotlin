@@ -1036,6 +1036,15 @@ class Solution {
 
         return res.reverse().toString()
     }
+
+
+    /**
+     * - [LeetCode190题](https://leetcode.cn/problems/reverse-bits/)
+     * @since 2025-2-13 11:35:56
+     * */
+    fun reverseBits(n:Int):Int {
+        return Integer.reverse(n)
+    }
 }
 
 
