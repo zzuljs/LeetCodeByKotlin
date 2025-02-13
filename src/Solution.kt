@@ -993,10 +993,10 @@ class Solution {
     fun partition(head: ListNode?, x: Int): ListNode? {
         var left: ListNode? = ListNode(0)
         var right: ListNode? = ListNode(0)
-        var leftLoop :ListNode? = left
-        var rightLoop:ListNode? = right
+        var leftLoop: ListNode? = left
+        var rightLoop: ListNode? = right
         var current: ListNode? = head
-        var pre:ListNode? = null
+        var pre: ListNode? = null
         while (current != null) {
             if (current.`val` < x) {
                 leftLoop?.next = current
@@ -1012,6 +1012,29 @@ class Solution {
 
         leftLoop?.next = right?.next
         return left?.next
+    }
+
+
+    /**
+     * - [LeetCode第67题](https://leetcode.cn/problems/add-binary/)
+     * @since 2025-2-13 10:56:21
+     * */
+    fun addBinary(a: String, b: String): String {
+        val res = StringBuilder()
+        var i = a.length - 1
+        var j = b.length - 1
+        var carry = 0
+        while (i >= 0 || j >= 0 || carry != 0) {
+            val numbA = if (i >= 0) (a[i] - '0') else 0
+            val numbB = if (j >= 0) (b[j] - '0') else 0
+            val sum = numbA + numbB + carry
+            res.append(sum % 2)
+            carry = sum / 2
+            i--
+            j--
+        }
+
+        return res.reverse().toString()
     }
 }
 

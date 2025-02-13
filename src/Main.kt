@@ -138,8 +138,10 @@ fun main(){
 //    println(Solution().findMinArrowShots(points))
 
 //    println(Solution().trailingZeroes(8425))
-    val list = Solution().createLinkedList(arrayListOf(1,4,3,2,5,2))
+//    val list = Solution().createLinkedList(arrayListOf(1,4,3,2,5,2))
 //    Solution().rotateRight(list,2)
-    Solution().partition(list,3)
+//    Solution().partition(list,3)
+
+    println(Solution().addBinary("10","1"))
 
 }
