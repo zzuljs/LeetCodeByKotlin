@@ -1042,8 +1042,23 @@ class Solution {
      * - [LeetCode190题](https://leetcode.cn/problems/reverse-bits/)
      * @since 2025-2-13 11:35:56
      * */
-    fun reverseBits(n:Int):Int {
+    fun reverseBits(n: Int): Int {
         return Integer.reverse(n)
+    }
+
+    /**
+     * - [LeetCode第191题](https://leetcode.cn/problems/number-of-1-bits/)
+     * @since 2025-2-13 12:12:38
+     * */
+    fun hammingWeight(n: Int): Int {
+        var numb = n
+        var count = 0
+        while (numb != 0) {
+            count += numb and 1
+            numb = numb ushr 1
+        }
+
+        return count
     }
 }
 
