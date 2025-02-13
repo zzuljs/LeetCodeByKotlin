@@ -1060,6 +1060,28 @@ class Solution {
 
         return count
     }
+
+    /**
+     * - [LeetCode第135题](https://leetcode.cn/problems/candy/)
+     * @since 2025-2-13 15:11:04
+     * */
+    fun candy(ratings: IntArray): Int {
+        val left = IntArray(ratings.size) { 1 }
+        val right = IntArray(ratings.size) { 1 }
+
+
+        for (i in 1..<ratings.size) {
+            if (ratings[i] > ratings[i - 1]) left[i] = left[i - 1] + 1
+        }
+        var sum = left.last()
+
+        for (i in ratings.size - 2 downTo 0) {
+            if (ratings[i] > ratings[i + 1]) right[i] = right[i + 1] + 1
+            sum += left[i].coerceAtLeast(right[i])
+        }
+        return sum
+
+    }
 }
 
 

@@ -142,6 +142,8 @@ fun main(){
 //    Solution().rotateRight(list,2)
 //    Solution().partition(list,3)
 
-    println(Solution().addBinary("10","1"))
+//    println(Solution().addBinary("10","1"))
+
+    println(Solution().candy(intArrayOf(1,3,2,2,1)))
 
 }
