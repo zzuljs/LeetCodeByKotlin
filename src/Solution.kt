@@ -927,7 +927,7 @@ class Solution {
         }
 
         // 特判，以下情况不需要旋转
-        if (length == 0||k==0||length==1||k%length == 0) return head
+        if (length == 0 || k == 0 || length == 1 || k % length == 0) return head
 
         val rotate = length - k % length
         var rotateHead = reverseListNode(head, 0, rotate)
@@ -982,6 +982,36 @@ class Solution {
 //        println("start = $start,end = $end")
 //        printListNode(finalHead)
         return finalHead
+    }
+
+
+    /**
+     * - [LeetCode第86题](https://leetcode.cn/problems/partition-list/)
+     *
+     * @since 2025-2-13 09:40:26
+     * */
+    fun partition(head: ListNode?, x: Int): ListNode? {
+        var left: ListNode? = ListNode(0)
+        var right: ListNode? = ListNode(0)
+        var leftLoop :ListNode? = left
+        var rightLoop:ListNode? = right
+        var current: ListNode? = head
+        var pre:ListNode? = null
+        while (current != null) {
+            if (current.`val` < x) {
+                leftLoop?.next = current
+                leftLoop = current
+            } else {
+                rightLoop?.next = current
+                rightLoop = current
+            }
+            pre = current
+            current = current.next
+            pre.next = null
+        }
+
+        leftLoop?.next = right?.next
+        return left?.next
     }
 }
 
