@@ -1082,6 +1082,29 @@ class Solution {
         return sum
 
     }
+
+
+    /**
+     * - [LeetCode第42题](https://leetcode.cn/problems/trapping-rain-water/)
+     *
+     * @since 2025-2-13 15:55:40
+     * */
+//    fun trap(height: IntArray): Int {
+//
+//    }
+
+    /**
+     * - [LeetCode第136题](https://leetcode.cn/problems/single-number/)
+     * @since 2025-2-14 11:15:12
+     * */
+    fun singleNumber(nums: IntArray): Int {
+        var x = 0
+        for(n in nums){
+            x = x xor n
+        }
+
+        return x
+    }
 }
 
 
