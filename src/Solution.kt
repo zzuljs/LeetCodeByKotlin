@@ -1105,6 +1105,21 @@ class Solution {
 
         return x
     }
+
+    /**
+     * -[LeetCode第137题](https://leetcode.cn/problems/single-number-ii/)
+     * @since 2025-2-14 15:54:20
+     * */
+    fun singleNumber137(nums: IntArray): Int {
+        var two = 0
+        var one = 0
+        for (n in nums){
+            one = (one xor n) and two.inv()
+            two = (two xor n) and one.inv()
+        }
+
+        return one
+    }
 }
 
 
