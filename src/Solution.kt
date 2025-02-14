@@ -1120,6 +1120,22 @@ class Solution {
 
         return one
     }
+
+    /**
+     * - [LeetCode第201题](https://leetcode.cn/problems/bitwise-and-of-numbers-range/)
+     * @since 2025-2-14 16:30:01
+     * */
+    fun rangeBitwiseAnd(left: Int, right: Int): Int {
+        var n = left
+        var m = right
+        var count = 0
+        while (n<m){
+            n = n shr 1
+            m = m shr 1
+            count++
+        }
+        return n shl count
+    }
 }
 
 

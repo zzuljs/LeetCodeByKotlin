@@ -144,6 +144,8 @@ fun main(){
 
 //    println(Solution().addBinary("10","1"))
 
-    println(Solution().candy(intArrayOf(1,3,2,2,1)))
+//    println(Solution().candy(intArrayOf(1,3,2,2,1)))
+
+    println(Solution().rangeBitwiseAnd(5,7))
 
 }
