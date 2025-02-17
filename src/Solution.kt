@@ -1240,6 +1240,28 @@ class Solution {
 
         return res.toString()
     }
+
+
+    /**
+     * - [LeetCode第162题](https://leetcode.cn/problems/find-peak-element/)
+     *
+     * @since 2025-2-17 21:30:29
+     * */
+    fun findPeakElement(nums: IntArray): Int {
+        var left = 0
+        var right = nums.size - 1
+        var mid = 0
+        while (left < right) {
+            mid = left + (right - left) / 2
+            if (nums[mid] < nums[mid + 1]) {
+                left = mid + 1
+            } else {
+                right = mid
+            }
+        }
+
+        return left
+    }
 }
 
 
