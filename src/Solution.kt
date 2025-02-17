@@ -1218,6 +1218,28 @@ class Solution {
             else -> ""
         }
     }
+
+
+    /**
+     * - [LeetCode第6题](https://leetcode.cn/problems/zigzag-conversion/)
+     * */
+    fun convert(s: String, numRows: Int): String {
+        if (numRows < 2) return s
+        val resList = arrayListOf<StringBuilder>()
+        for (index in 0..<numRows) resList.add(StringBuilder())
+        var flag = -1
+        var index = 0
+        for (i in s.indices) {
+            resList[index].append(s[i])
+            if (index == 0 || index == numRows - 1) flag = -flag
+            index += flag
+        }
+
+        val res = StringBuilder()
+        for (i in 0..<numRows) res.append(resList[i])
+
+        return res.toString()
+    }
 }
 
 

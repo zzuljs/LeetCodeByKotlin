@@ -148,6 +148,8 @@ fun main(){
 
 //    println(Solution().rangeBitwiseAnd(5,7))
 
-    println(Solution().intToRoman(1994))
+//    println(Solution().intToRoman(1994))
+
+    println(Solution().convert("PAYPALISHIRING",3))
 
 }
