@@ -1099,7 +1099,7 @@ class Solution {
      * */
     fun singleNumber(nums: IntArray): Int {
         var x = 0
-        for(n in nums){
+        for (n in nums) {
             x = x xor n
         }
 
@@ -1113,7 +1113,7 @@ class Solution {
     fun singleNumber137(nums: IntArray): Int {
         var two = 0
         var one = 0
-        for (n in nums){
+        for (n in nums) {
             one = (one xor n) and two.inv()
             two = (two xor n) and one.inv()
         }
@@ -1129,12 +1129,40 @@ class Solution {
         var n = left
         var m = right
         var count = 0
-        while (n<m){
+        while (n < m) {
             n = n shr 1
             m = m shr 1
             count++
         }
         return n shl count
+    }
+
+
+    /**
+     * - [LeetCode第42题](https://leetcode.cn/problems/trapping-rain-water/)
+     *
+     * @since 2025-2-17 19:37:45
+     * */
+    fun trap(height: IntArray): Int {
+        var maxLeft = height[0]
+        var maxRight = height.last()
+        var left = 1
+        var right = height.size - 2
+        var sum = 0
+        while (left <= right) {
+            maxLeft = maxLeft.coerceAtLeast(height[left])
+            maxRight = maxRight.coerceAtLeast(height[right])
+            // 木桶效应：水量由最短木板决定
+            if (maxLeft > maxRight) {
+                sum += maxRight - height[right]
+                right--
+            } else {
+                sum += maxLeft - height[left]
+                left++
+            }
+        }
+
+        return sum
     }
 }
 
