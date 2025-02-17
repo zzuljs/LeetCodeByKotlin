@@ -146,6 +146,8 @@ fun main(){
 
 //    println(Solution().candy(intArrayOf(1,3,2,2,1)))
 
-    println(Solution().rangeBitwiseAnd(5,7))
+//    println(Solution().rangeBitwiseAnd(5,7))
+
+    println(Solution().intToRoman(1994))
 
 }

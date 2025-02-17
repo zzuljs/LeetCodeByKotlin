@@ -2,6 +2,7 @@ import java.math.BigInteger
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.pow
 
 class Solution {
 
@@ -1163,6 +1164,59 @@ class Solution {
         }
 
         return sum
+    }
+
+
+    /**
+     * -[LeetCode第12题](https://leetcode.cn/problems/integer-to-roman/)
+     *
+     * @since 2025-2-17 20:15:30
+     * */
+    fun intToRoman(num: Int): String {
+        var n = num.toString()
+        var remain = 0
+        val res = StringBuilder()
+        for (index in n.indices) {
+            res.append(getRomanStr((n[index] - '0') * 10.0.pow((n.length - index - 1).toDouble()).toInt()))
+        }
+
+        return res.toString()
+    }
+
+    private fun getRomanStr(n: Int): String {
+        return when (n) {
+            1 -> "I"
+            2 -> "II"
+            3 -> "III"
+            4 -> "IV"
+            5 -> "V"
+            6 -> "VI"
+            7 -> "VII"
+            8 -> "VIII"
+            9 -> "IX"
+            10 -> "X"
+            20 -> "XX"
+            30 -> "XXX"
+            40 -> "XL"
+            50 -> "L"
+            60 -> "LX"
+            70 -> "LXX"
+            80 -> "LXXX"
+            90 -> "XC"
+            100 -> "C"
+            200 -> "CC"
+            300 -> "CCC"
+            400 -> "CD"
+            500 -> "D"
+            600 -> "DC"
+            700 -> "DCC"
+            800 -> "DCCC"
+            900 -> "CM"
+            1000 -> "M"
+            2000 -> "MM"
+            3000 -> "MMM"
+            else -> ""
+        }
     }
 }
 
