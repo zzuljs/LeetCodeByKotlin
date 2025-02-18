@@ -152,6 +152,8 @@ fun main(){
 
 //    println(Solution().convert("PAYPALISHIRING",3))
 
-    println(Solution().findPeakElement(intArrayOf(1,2,1,3,5,6,4)))
+//    println(Solution().findPeakElement(intArrayOf(1,2,1,3,5,6,4)))
+
+    println(Solution().wordBreak("leetcode", arrayListOf("leet","code")))
 
 }

@@ -1,5 +1,6 @@
 import java.math.BigInteger
 import java.util.*
+import kotlin.collections.HashMap
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.pow
@@ -1315,6 +1316,28 @@ class Solution {
         }
 
         return cur
+    }
+
+
+    /**
+     * - [LeetCode第139题](https://leetcode.cn/problems/word-break/)
+     *
+     * @since 2025-2-18 11:18:57
+     * */
+    fun wordBreak(s: String, wordDict: List<String>): Boolean {
+        val wordSet = HashSet(wordDict)
+        val dp = BooleanArray(s.length+1)
+        dp[0] = true
+        for (i in 1..s.length){
+            for (j in 0..<i ){
+                if (dp[j] && wordSet.contains(s.substring(j,i))){
+                    dp[i] = true
+                    break
+                }
+            }
+        }
+
+        return dp[s.length]
     }
 }
 
