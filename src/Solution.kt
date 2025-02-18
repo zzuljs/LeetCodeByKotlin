@@ -1278,6 +1278,26 @@ class Solution {
         val y = quickMul(x,n/2)
         return if (n % 2 == 0) y*y else x*y*y
     }
+
+
+    /**
+     * - [LeetCode第70题](https://leetcode.cn/problems/climbing-stairs/)
+     *
+     * @since 2025-2-18 10:25:58
+     * */
+    fun climbStairs(n: Int): Int {
+        var r = 1
+        var p = 0
+        var q = 0
+
+        for (i in 0..n){
+            p = q
+            q = r
+            r = p+q
+        }
+
+        return r
+    }
 }
 
 
