@@ -1100,7 +1100,7 @@ class Solution {
      * */
     fun singleNumber(nums: IntArray): Int {
         var x = 0
-        for(n in nums){
+        for (n in nums) {
             x = x xor n
         }
 
@@ -1114,7 +1114,7 @@ class Solution {
     fun singleNumber137(nums: IntArray): Int {
         var two = 0
         var one = 0
-        for (n in nums){
+        for (n in nums) {
             one = (one xor n) and two.inv()
             two = (two xor n) and one.inv()
         }
@@ -1270,13 +1270,13 @@ class Solution {
      * */
     fun myPow(x: Double, n: Int): Double {
         val N = n.toLong()
-        return if (N>0) quickMul(x,n) else 1.0 / quickMul(x,n)
+        return if (N > 0) quickMul(x, n) else 1.0 / quickMul(x, n)
     }
 
-    private fun quickMul(x:Double,n:Int):Double{
-        if (n==0) return 1.0
-        val y = quickMul(x,n/2)
-        return if (n % 2 == 0) y*y else x*y*y
+    private fun quickMul(x: Double, n: Int): Double {
+        if (n == 0) return 1.0
+        val y = quickMul(x, n / 2)
+        return if (n % 2 == 0) y * y else x * y * y
     }
 
 
@@ -1290,13 +1290,31 @@ class Solution {
         var p = 0
         var q = 0
 
-        for (i in 0..n){
+        for (i in 0..n) {
             p = q
             q = r
-            r = p+q
+            r = p + q
         }
 
         return r
+    }
+
+
+    /**
+     * - [LeetCode第198题](https://leetcode.cn/problems/house-robber/)
+     *
+     * @since 2025-2-18 10:39:51
+     * */
+    fun rob(nums: IntArray): Int {
+        var pre = 0
+        var cur = nums[0]
+        for (i in 1..<nums.size) {
+            val tmp = maxOf(cur, pre + nums[i])
+            pre = cur
+            cur = tmp
+        }
+
+        return cur
     }
 }
 
