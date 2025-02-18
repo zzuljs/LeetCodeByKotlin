@@ -1100,7 +1100,7 @@ class Solution {
      * */
     fun singleNumber(nums: IntArray): Int {
         var x = 0
-        for (n in nums) {
+        for(n in nums){
             x = x xor n
         }
 
@@ -1114,7 +1114,7 @@ class Solution {
     fun singleNumber137(nums: IntArray): Int {
         var two = 0
         var one = 0
-        for (n in nums) {
+        for (n in nums){
             one = (one xor n) and two.inv()
             two = (two xor n) and one.inv()
         }
@@ -1261,6 +1261,22 @@ class Solution {
         }
 
         return left
+    }
+
+
+    /**
+     * - [LeetCode第50题](https://leetcode.cn/problems/powx-n/)
+     * @since 2025-2-14 16:31:05
+     * */
+    fun myPow(x: Double, n: Int): Double {
+        val N = n.toLong()
+        return if (N>0) quickMul(x,n) else 1.0 / quickMul(x,n)
+    }
+
+    private fun quickMul(x:Double,n:Int):Double{
+        if (n==0) return 1.0
+        val y = quickMul(x,n/2)
+        return if (n % 2 == 0) y*y else x*y*y
     }
 }
 
