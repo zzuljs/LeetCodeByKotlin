@@ -1339,6 +1339,30 @@ class Solution {
 
         return dp[s.length]
     }
+
+
+    /**
+     * - [LeetCode第322题](https://leetcode.cn/problems/coin-change/)
+     *
+     * @since 2025-2-18 14:55:46
+     * */
+    fun coinChange(coins: IntArray, amount: Int): Int {
+            val dp = IntArray(amount+1)
+            Arrays.fill(dp,amount+1)
+            dp[0] = 0
+
+        for (i in 0..amount){
+            var min = amount+1
+            for (c in coins){
+                if (i>=c){
+                    min = dp[i].coerceAtMost(dp[i-c]+1)
+                    dp[i] = min
+                }
+            }
+        }
+
+        return if (dp[amount]>amount) -1 else dp[amount]
+    }
 }
 
 

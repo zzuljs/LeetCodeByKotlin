@@ -154,6 +154,8 @@ fun main(){
 
 //    println(Solution().findPeakElement(intArrayOf(1,2,1,3,5,6,4)))
 
-    println(Solution().wordBreak("leetcode", arrayListOf("leet","code")))
+//    println(Solution().wordBreak("leetcode", arrayListOf("leet","code")))
+
+    println(Solution().coinChange(intArrayOf(186,419,83,408),6249))
 
 }
