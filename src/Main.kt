@@ -156,6 +156,8 @@ fun main(){
 
 //    println(Solution().wordBreak("leetcode", arrayListOf("leet","code")))
 
-    println(Solution().coinChange(intArrayOf(186,419,83,408),6249))
+//    println(Solution().coinChange(intArrayOf(186,419,83,408),6249))
+
+    println(Solution().isValid("()[]{}"))
 
 }

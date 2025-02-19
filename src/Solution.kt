@@ -1,5 +1,6 @@
 import java.math.BigInteger
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.math.abs
 import kotlin.math.max
@@ -1362,6 +1363,36 @@ class Solution {
         }
 
         return if (dp[amount]>amount) -1 else dp[amount]
+    }
+
+
+    /**
+     * - [LeetCode第20题](https://leetcode.cn/problems/valid-parentheses/)
+     * @since 2025-2-19 13:28:23
+     * */
+    fun isValid(s: String): Boolean {
+        val stack = ArrayList<Char>()
+        for (c in s){
+            when(c){
+                '(','[','{'-> stack.add(c)
+                ')'->{
+                    if (stack.isNotEmpty()&&stack.last()=='(') stack.removeLast()
+                    else return false
+                }
+                ']'->{
+                    if (stack.isNotEmpty()&&stack.last()=='[') stack.removeLast()
+                    else return false
+                }
+                '}'->{
+                    if (stack.isNotEmpty()&&stack.last()=='{') stack.removeLast()
+                    else return false
+                }
+                else->return false
+            }
+            println("stack = ${stack.joinToString()}")
+        }
+
+        return if (stack.isEmpty()) true else false
     }
 }
 
