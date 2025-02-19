@@ -1421,6 +1421,36 @@ class Solution {
 
         return rebuildPath.toString()
     }
+
+
+    /**
+     * - [LeetCode第150题](https://leetcode.cn/problems/evaluate-reverse-polish-notation/)
+     *
+     * @since 2025-2-19 14:27:40
+     * */
+    fun evalRPN(tokens: Array<String>): Int {
+        val stack = Stack<Int>()
+        for (c in tokens){
+            if (c == "+"||c=="-"||c=="*"||c=="/"){
+                val b = stack.pop()
+                val a = stack.pop()
+                val res = when(c){
+                    "+"->a+b
+                    "-"->a-b
+                    "*"->a*b
+                    "/"->a/b
+                    else->throw IllegalArgumentException()
+                }
+                stack.push(res)
+            }else{
+                stack.push(c.toInt())
+            }
+        }
+
+        return stack.pop()
+
+
+    }
 }
 
 
