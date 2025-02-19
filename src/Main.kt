@@ -158,6 +158,8 @@ fun main(){
 
 //    println(Solution().coinChange(intArrayOf(186,419,83,408),6249))
 
-    println(Solution().isValid("()[]{}"))
+//    println(Solution().isValid("()[]{}"))
+
+    println(Solution().simplifyPath("/home//foo/"))
 
 }

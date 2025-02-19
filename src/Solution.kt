@@ -1392,7 +1392,34 @@ class Solution {
             println("stack = ${stack.joinToString()}")
         }
 
-        return if (stack.isEmpty()) true else false
+        return stack.isEmpty()
+    }
+
+
+    /**
+     * - [LeetCode第71题](https://leetcode.cn/problems/simplify-path/)
+     *
+     * @since 2025-2-19 13:41:18
+     * */
+    fun simplifyPath(path: String): String {
+        val dirList = path.split("/")
+        val res = ArrayList<String>()
+        for (d in dirList){
+            when(d){
+                ".."->if (res.isNotEmpty()) res.removeLast()
+                "","."-> continue
+                else -> res.add(d)
+            }
+        }
+
+        if (res.isEmpty()) return "/"
+        val rebuildPath = StringBuilder()
+
+        for (d in res){
+            rebuildPath.append("/$d")
+        }
+
+        return rebuildPath.toString()
     }
 }
 
