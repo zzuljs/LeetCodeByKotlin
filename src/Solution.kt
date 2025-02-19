@@ -1451,6 +1451,51 @@ class Solution {
 
 
     }
+
+
+    /**
+     * - [LeetCode第224题](https://leetcode.cn/problems/basic-calculator/)
+     *
+     * @since 2025-2-19 15:20:21
+     */
+    fun calculate(s:String):Int {
+        val stack = Stack<Int>()
+        var flag = 1
+        stack.push(flag)
+        var index = 0
+        var sum = 0
+        while (index<s.length){
+            when(s[index]){
+                ' '-> index++
+                '+'->{
+                    flag = stack.peek()
+                    index++
+                }
+                '-'->{
+                    flag = -stack.peek()
+                    index++
+                }
+                '('-> {
+                    stack.push(flag)
+                    index++
+                }
+                ')'->{
+                    stack.pop()
+                    index++
+                }
+                else->{
+                    var res = 0
+                    while (index<s.length&&s[index] in '0'..'9'){
+                        res = 10*res+(s[index]-'0')
+                        index++
+                    }
+                    sum+= flag*res
+                }
+            }
+        }
+
+        return sum
+    }
 }
 
 
