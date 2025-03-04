@@ -1526,6 +1526,30 @@ class Solution {
         }
         return if (min == Int.MAX_VALUE) 0 else min
     }
+
+
+    /**
+     * - [LeetCode第3题](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+     *
+     * @since 2025-3-4 14:48:25
+     * */
+    fun lengthOfLongestSubstring(s: String): Int {
+        var start = 0
+        var subString = ""
+        var max = 0
+        for (i in s.indices) {
+//            println("sub = $subString,i=$i,s[i] = ${s[i]}, max = $max")
+            if (!subString.contains(s[i])) {
+                subString += s[i]
+            } else {
+                start = subString.indexOf(s[i])+1
+                subString = subString.substring(start, subString.length) +s[i]
+            }
+            max = max(max, subString.length)
+        }
+
+        return max
+    }
 }
 
 
