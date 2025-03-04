@@ -160,6 +160,8 @@ fun main(){
 
 //    println(Solution().isValid("()[]{}"))
 
-    println(Solution().simplifyPath("/home//foo/"))
+//    println(Solution().simplifyPath("/home//foo/"))
+
+    println(Solution().minSubArrayLen(7, intArrayOf(2,3,1,2,4,3)))
 
 }

@@ -1,7 +1,5 @@
 import java.math.BigInteger
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.pow
@@ -1327,11 +1325,11 @@ class Solution {
      * */
     fun wordBreak(s: String, wordDict: List<String>): Boolean {
         val wordSet = HashSet(wordDict)
-        val dp = BooleanArray(s.length+1)
+        val dp = BooleanArray(s.length + 1)
         dp[0] = true
-        for (i in 1..s.length){
-            for (j in 0..<i ){
-                if (dp[j] && wordSet.contains(s.substring(j,i))){
+        for (i in 1..s.length) {
+            for (j in 0..<i) {
+                if (dp[j] && wordSet.contains(s.substring(j, i))) {
                     dp[i] = true
                     break
                 }
@@ -1348,21 +1346,21 @@ class Solution {
      * @since 2025-2-18 14:55:46
      * */
     fun coinChange(coins: IntArray, amount: Int): Int {
-            val dp = IntArray(amount+1)
-            Arrays.fill(dp,amount+1)
-            dp[0] = 0
+        val dp = IntArray(amount + 1)
+        Arrays.fill(dp, amount + 1)
+        dp[0] = 0
 
-        for (i in 0..amount){
-            var min = amount+1
-            for (c in coins){
-                if (i>=c){
-                    min = dp[i].coerceAtMost(dp[i-c]+1)
+        for (i in 0..amount) {
+            var min = amount + 1
+            for (c in coins) {
+                if (i >= c) {
+                    min = dp[i].coerceAtMost(dp[i - c] + 1)
                     dp[i] = min
                 }
             }
         }
 
-        return if (dp[amount]>amount) -1 else dp[amount]
+        return if (dp[amount] > amount) -1 else dp[amount]
     }
 
 
@@ -1372,22 +1370,25 @@ class Solution {
      * */
     fun isValid(s: String): Boolean {
         val stack = ArrayList<Char>()
-        for (c in s){
-            when(c){
-                '(','[','{'-> stack.add(c)
-                ')'->{
-                    if (stack.isNotEmpty()&&stack.last()=='(') stack.removeLast()
+        for (c in s) {
+            when (c) {
+                '(', '[', '{' -> stack.add(c)
+                ')' -> {
+                    if (stack.isNotEmpty() && stack.last() == '(') stack.removeLast()
                     else return false
                 }
-                ']'->{
-                    if (stack.isNotEmpty()&&stack.last()=='[') stack.removeLast()
+
+                ']' -> {
+                    if (stack.isNotEmpty() && stack.last() == '[') stack.removeLast()
                     else return false
                 }
-                '}'->{
-                    if (stack.isNotEmpty()&&stack.last()=='{') stack.removeLast()
+
+                '}' -> {
+                    if (stack.isNotEmpty() && stack.last() == '{') stack.removeLast()
                     else return false
                 }
-                else->return false
+
+                else -> return false
             }
             println("stack = ${stack.joinToString()}")
         }
@@ -1404,10 +1405,10 @@ class Solution {
     fun simplifyPath(path: String): String {
         val dirList = path.split("/")
         val res = ArrayList<String>()
-        for (d in dirList){
-            when(d){
-                ".."->if (res.isNotEmpty()) res.removeLast()
-                "","."-> continue
+        for (d in dirList) {
+            when (d) {
+                ".." -> if (res.isNotEmpty()) res.removeLast()
+                "", "." -> continue
                 else -> res.add(d)
             }
         }
@@ -1415,7 +1416,7 @@ class Solution {
         if (res.isEmpty()) return "/"
         val rebuildPath = StringBuilder()
 
-        for (d in res){
+        for (d in res) {
             rebuildPath.append("/$d")
         }
 
@@ -1430,19 +1431,19 @@ class Solution {
      * */
     fun evalRPN(tokens: Array<String>): Int {
         val stack = Stack<Int>()
-        for (c in tokens){
-            if (c == "+"||c=="-"||c=="*"||c=="/"){
+        for (c in tokens) {
+            if (c == "+" || c == "-" || c == "*" || c == "/") {
                 val b = stack.pop()
                 val a = stack.pop()
-                val res = when(c){
-                    "+"->a+b
-                    "-"->a-b
-                    "*"->a*b
-                    "/"->a/b
-                    else->throw IllegalArgumentException()
+                val res = when (c) {
+                    "+" -> a + b
+                    "-" -> a - b
+                    "*" -> a * b
+                    "/" -> a / b
+                    else -> throw IllegalArgumentException()
                 }
                 stack.push(res)
-            }else{
+            } else {
                 stack.push(c.toInt())
             }
         }
@@ -1458,43 +1459,72 @@ class Solution {
      *
      * @since 2025-2-19 15:20:21
      */
-    fun calculate(s:String):Int {
+    fun calculate(s: String): Int {
         val stack = Stack<Int>()
         var flag = 1
         stack.push(flag)
         var index = 0
         var sum = 0
-        while (index<s.length){
-            when(s[index]){
-                ' '-> index++
-                '+'->{
+        while (index < s.length) {
+            when (s[index]) {
+                ' ' -> index++
+                '+' -> {
                     flag = stack.peek()
                     index++
                 }
-                '-'->{
+
+                '-' -> {
                     flag = -stack.peek()
                     index++
                 }
-                '('-> {
+
+                '(' -> {
                     stack.push(flag)
                     index++
                 }
-                ')'->{
+
+                ')' -> {
                     stack.pop()
                     index++
                 }
-                else->{
+
+                else -> {
                     var res = 0
-                    while (index<s.length&&s[index] in '0'..'9'){
-                        res = 10*res+(s[index]-'0')
+                    while (index < s.length && s[index] in '0'..'9') {
+                        res = 10 * res + (s[index] - '0')
                         index++
                     }
-                    sum+= flag*res
+                    sum += flag * res
                 }
             }
         }
 
         return sum
+    }
+
+
+    /**
+     * - [LeetCode第209题](https://leetcode.cn/problems/minimum-size-subarray-sum/)
+     *
+     * @since 2025-3-4 13:48:34
+     * */
+    fun minSubArrayLen(target: Int, nums: IntArray): Int {
+        var start = 0
+        var end = 0
+        var sum = nums[0]
+        var min = Int.MAX_VALUE
+        while (start <= end && end < nums.size) {
+            //println("start = $start, end = $end, min = $min, sum = $sum")
+            if (sum >= target) {
+                sum -= nums[start]
+                min = minOf(end - start + 1, min)
+                start++
+            } else {
+                end++
+                if (end < nums.size) sum += nums[end]
+            }
+        }
+        return if (min == Int.MAX_VALUE) 0 else min
     }
 }
 
